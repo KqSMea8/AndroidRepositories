@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">AndroidRepositories</string>
+
+
+    <string-array name="main_title">
+        <item>GifView</item>
+        <item>签名板</item>
+        <item>GifView</item>
+        <item>签名板</item>
+
+
+    </string-array>
 </resources>

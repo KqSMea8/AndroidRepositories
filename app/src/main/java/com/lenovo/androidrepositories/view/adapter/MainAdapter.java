@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.lenovo.androidrepositories.R;
 import com.lenovo.androidrepositories.model.entity.MainBean;
+import com.lenovo.androidrepositories.view.customview.DragLayoutTestActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
     public Context context;
-    private LayoutInflater inflater;
-    private int layoutId;
+private  LayoutInflater inflater;
+    private int layoutId[];
     private static List<MainBean> list;
     private static OnRecyclerViewItemClickListener onItemClickListener;
 
@@ -30,7 +31,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
         this.context = context;
         inflater = LayoutInflater.from(context);
         list = new ArrayList<MainBean>();
-        layoutId = R.layout.item_main;
+        layoutId = new int[]{R.layout.item_main};
     }
 
 
@@ -51,7 +52,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
 
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MainViewHolder(inflater.inflate(layoutId, null));
+        return new MainViewHolder(inflater.inflate(layoutId[viewType], parent, false));
     }
 
     @Override
@@ -65,6 +66,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder
     public int getItemCount() {
         return list.size();
     }
+
 
     static class MainViewHolder extends RecyclerView.ViewHolder {
 

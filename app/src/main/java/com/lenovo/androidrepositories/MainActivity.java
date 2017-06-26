@@ -13,6 +13,8 @@ import com.lenovo.androidrepositories.model.model.MainModeImp;
 import com.lenovo.androidrepositories.model.model.MainModelCmpl;
 import com.lenovo.androidrepositories.model.model.MainModelListener;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
+import com.lenovo.androidrepositories.view.customview.DragLayoutTestActivity;
+import com.lenovo.androidrepositories.view.customview.DrawBoardTestActivity;
 import com.lenovo.androidrepositories.view.customview.GifViewTestActivity;
 
 import java.util.List;
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements MainModelListener
         loadData();
     }
 
+    /**
+     * 初始化视图
+     */
     private void initView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_list);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false));
@@ -38,21 +43,34 @@ public class MainActivity extends AppCompatActivity implements MainModelListener
 
     }
 
-    private MainAdapter.OnRecyclerViewItemClickListener itemClickListener = new MainAdapter.OnRecyclerViewItemClickListener() {
-        @Override
-        public void onItemClickListener(View itemView, MainBean mainBean, int position) {
-            switch (position){
-                case  0:
-                    ActivtiyUtil.switchActivity(MainActivity.this, GifViewTestActivity.class);
-                    break;
-            }
-        }
-    };
-
+    /**
+     * 加载数据
+     */
     private void loadData() {
         mainModeImp = new MainModelCmpl(this, this);
         mainModeImp.getData(R.array.main_title);
     }
+
+    /**
+     * recycleView   点击事件回调
+     */
+    private MainAdapter.OnRecyclerViewItemClickListener itemClickListener = new MainAdapter.OnRecyclerViewItemClickListener() {
+        @Override
+        public void onItemClickListener(View itemView, MainBean mainBean, int position) {
+            ToastUtil.showMessage(mainBean.getTitle());
+            switch (position) {
+                case 0:
+                    ActivtiyUtil.switchActivity(MainActivity.this, GifViewTestActivity.class);
+                    break;
+                case 1:
+                    ActivtiyUtil.switchActivity(MainActivity.this, DrawBoardTestActivity.class);
+                    break;
+                case 2:
+                    ActivtiyUtil.switchActivity(MainActivity.this, DragLayoutTestActivity.class);
+                    break;
+            }
+        }
+    };
 
     @Override
     public void onSucessful(List<MainBean> list) {

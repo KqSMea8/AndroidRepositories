@@ -1,4 +1,4 @@
-package com.lenovo.androidrepositories.view.customview;
+package com.lenovo.androidrepositories.view.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.lenovo.androidrepositories.R;
+import com.lenovo.androidrepositories.view.customview.DrawBoardView;
 
 /**
  * 画板测试activity

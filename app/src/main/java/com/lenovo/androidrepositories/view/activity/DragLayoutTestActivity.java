@@ -1,4 +1,4 @@
-package com.lenovo.androidrepositories.view.customview;
+package com.lenovo.androidrepositories.view.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -12,10 +12,11 @@ import com.lenovo.androidrepositories.model.entity.MainBean;
 import com.lenovo.androidrepositories.model.model.MainModeImp;
 import com.lenovo.androidrepositories.model.model.MainModelCmpl;
 import com.lenovo.androidrepositories.model.model.MainModelListener;
+import com.lenovo.androidrepositories.view.activity.AppTestActivity;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
-import com.lenovo.androidrepositories.view.customview.DragLayoutTestActivity;
-import com.lenovo.androidrepositories.view.customview.DrawBoardTestActivity;
-import com.lenovo.androidrepositories.view.customview.GifViewTestActivity;
+import com.lenovo.androidrepositories.view.activity.DragLayoutTestActivity;
+import com.lenovo.androidrepositories.view.activity.DrawBoardTestActivity;
+import com.lenovo.androidrepositories.view.activity.GifViewTestActivity;
 
 import java.util.List;
 
@@ -67,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements MainModelListener
                     break;
                 case 2:
                     ActivtiyUtil.switchActivity(MainActivity.this, DragLayoutTestActivity.class);
+                    break;
+                case 3:
+                    ActivtiyUtil.switchActivity(MainActivity.this, AppTestActivity.class);
                     break;
             }
         }

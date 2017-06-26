@@ -18,18 +18,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.customview.GifViewTestActivity"
+            android:name=".view.activity.GifViewTestActivity"
             android:label="GifView">
 
         </activity>
         <activity
-            android:name=".view.customview.DrawBoardTestActivity"
+            android:name=".view.activity.DrawBoardTestActivity"
             android:label="画板View">
 
         </activity>
         <activity
-            android:name=".view.customview.DragLayoutTestActivity"
+            android:name=".view.activity.DragLayoutTestActivity"
             android:label="抽屉">
+
+        </activity>
+        <activity
+            android:name=".view.activity.AppTestActivity"
+            android:label="应用">
 
         </activity>
     </application>

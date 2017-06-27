@@ -15,6 +15,8 @@ import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
 import com.lenovo.androidrepositories.util.ActivtiyUtil;
 import com.lenovo.androidrepositories.util.ToastUtil;
 import com.lenovo.androidrepositories.view.activity.AppTestActivity;
+import com.lenovo.androidrepositories.view.activity.FolderTestActivity;
+import com.lenovo.androidrepositories.view.activity.ZipTestActivity;
 import com.lenovo.androidrepositories.view.adapter.AbsRecycleAdapter;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
 import com.lenovo.androidrepositories.view.activity.DragLayoutTestActivity;
@@ -72,6 +74,12 @@ public class MainActivity extends AppCompatActivity implements OnModelCmplListen
                     break;
                 case 3:
                     ActivtiyUtil.switchActivity(MainActivity.this, AppTestActivity.class);
+                    break;
+                case 4:
+                    ActivtiyUtil.switchActivity(MainActivity.this, FolderTestActivity.class);
+                    break;
+                case 5:
+                    ActivtiyUtil.switchActivity(MainActivity.this, ZipTestActivity.class);
                     break;
             }
         }

@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 
 public abstract class AbsRecycleAdapter<T> extends RecyclerView.Adapter<AbsRecycleAdapter.ViewHolder> {
-    private static AbsRecycleAdapter.OnRecyclerViewItemClickListener onItemClickListener;
+    private AbsRecycleAdapter.OnRecyclerViewItemClickListener onItemClickListener;
     protected List<T> list;
     protected Context context;
     private int[] layoutId;
@@ -54,8 +54,16 @@ public abstract class AbsRecycleAdapter<T> extends RecyclerView.Adapter<AbsRecyc
     }
 
     @Override
-    public void onBindViewHolder(AbsRecycleAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(AbsRecycleAdapter.ViewHolder holder, final int position) {
         bindView(holder, list.get(position), position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClickListener(v, position);
+                }
+            }
+        });
     }
 
 
@@ -73,7 +81,6 @@ public abstract class AbsRecycleAdapter<T> extends RecyclerView.Adapter<AbsRecyc
 
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(onClickListener);
         }
 
 
@@ -87,15 +94,8 @@ public abstract class AbsRecycleAdapter<T> extends RecyclerView.Adapter<AbsRecyc
             }
         }
 
-        private View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClickListener(v, getAdapterPosition());
-                }
-            }
-        };
     }
+
 
     public void setOnItemClickListener(AbsRecycleAdapter.OnRecyclerViewItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;

@@ -7,7 +7,8 @@
         <item>画板</item>
         <item>抽屉</item>
         <item>应用</item>
-
+        <item>文件</item>
+        <item>Zip</item>
 
     </string-array>
 </resources>

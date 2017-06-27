@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lenovo.androidrepositories">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
@@ -35,6 +39,16 @@
         <activity
             android:name=".view.activity.AppTestActivity"
             android:label="应用">
+
+        </activity>
+        <activity
+            android:name=".view.activity.FolderTestActivity"
+            android:label="文件">
+
+        </activity>
+        <activity
+            android:name=".view.activity.ZipTestActivity"
+            android:label="Zip">
 
         </activity>
     </application>

@@ -5,8 +5,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Movie;
 import android.os.Build;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
+
 
 /**
  * gif控件
@@ -41,6 +43,8 @@ public class GifView extends View {
 
     private volatile boolean mPaused = false;
 
+    private android.os.Handler handler = new Handler();
+
     public GifView(Context context) {
         this(context, null);
     }
@@ -62,12 +66,11 @@ public class GifView extends View {
         if (attrs != null) {
             mMovieResourceId = attrs.getAttributeResourceValue(XML_NS, "src", -1);
             if (mMovieResourceId != -1) {
-                mMovie = Movie.decodeStream(getResources().openRawResource(
-                        mMovieResourceId));
+                setMovieResource(mMovieResourceId);
             }
         }
-
     }
+
 
     /**
      * 设置gif图资源
@@ -76,9 +79,19 @@ public class GifView extends View {
      */
     public void setMovieResource(int movieResId) {
         this.mMovieResourceId = movieResId;
-        mMovie = Movie.decodeStream(getResources().openRawResource(
-                mMovieResourceId));
-        requestLayout();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mMovie = Movie.decodeStream(getResources().openRawResource(
+                        mMovieResourceId));
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        requestLayout();
+                    }
+                });
+            }
+        }).start();
     }
 
     public void setMovie(Movie movie) {

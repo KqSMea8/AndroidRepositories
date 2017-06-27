@@ -1,6 +1,8 @@
-package com.lenovo.androidrepositories;
+package com.lenovo.androidrepositories.util;
 
 import android.widget.Toast;
+
+import com.lenovo.androidrepositories.AppApplication;
 
 /**
  * Created by jyjs on 2017/6/26.

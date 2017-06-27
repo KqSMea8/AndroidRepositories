@@ -1,4 +1,4 @@
-package com.lenovo.androidrepositories;
+package com.lenovo.androidrepositories.util;
 
 import android.content.Context;
 import android.content.Intent;

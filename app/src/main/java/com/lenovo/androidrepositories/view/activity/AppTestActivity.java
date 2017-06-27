@@ -8,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.lenovo.androidrepositories.R;
+import com.lenovo.androidrepositories.model.cmpl.AppModelCmpl;
 import com.lenovo.androidrepositories.model.entity.AppBean;
-import com.lenovo.androidrepositories.model.model.AppModelCmpl;
-import com.lenovo.androidrepositories.model.model.AppModelImp;
-import com.lenovo.androidrepositories.model.model.AppModelListener;
+import com.lenovo.androidrepositories.model.impl.AppModelImp;
+import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
+import com.lenovo.androidrepositories.util.PackageUtil;
+import com.lenovo.androidrepositories.util.ToastUtil;
+import com.lenovo.androidrepositories.view.adapter.AbsRecycleAdapter;
 import com.lenovo.androidrepositories.view.adapter.AppAdapter;
 
 import java.util.List;
@@ -20,7 +23,7 @@ import java.util.List;
  * Created by jyjs on 2017/6/26.
  */
 
-public class AppTestActivity extends AppCompatActivity implements AppAdapter.OnRecyclerViewItemClickListener, AppModelListener {
+public class AppTestActivity extends AppCompatActivity implements AbsRecycleAdapter.OnRecyclerViewItemClickListener, OnModelCmplListener {
 
     private AppAdapter appAdapter;
     private AppModelImp appModelImp;
@@ -47,17 +50,19 @@ public class AppTestActivity extends AppCompatActivity implements AppAdapter.OnR
     }
 
     @Override
-    public void onItemClickListener(View itemView, AppBean appBean, int position) {
-
+    public void onItemClickListener(View itemView, int position) {
+        AppBean appBean = appAdapter.getList().get(position);
+        PackageUtil.startApp(appBean.getPackageName());
     }
 
-    @Override
-    public void onSucessful(List<AppBean> list) {
 
+    @Override
+    public void onSucessful(List list) {
+        appAdapter.setData(list);
     }
 
     @Override
     public void onError(Exception e) {
-
+        ToastUtil.showMessage(e.getMessage());
     }
 }

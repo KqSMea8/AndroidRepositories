@@ -1,9 +1,11 @@
-package com.lenovo.androidrepositories.model.model;
+package com.lenovo.androidrepositories.model.cmpl;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 
 import com.lenovo.androidrepositories.model.entity.MainBean;
+import com.lenovo.androidrepositories.model.impl.MainModeImp;
+import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +14,12 @@ import java.util.List;
  * Created by lenovo on 2017/6/25.
  */
 
-public class MainModelCmpl implements MainModeImp {
+public class MainModelCmpl  implements MainModeImp {
 
     private Context context;
-    private MainModelListener modelListener;
+    private OnModelCmplListener<MainBean> modelListener;
 
-    public MainModelCmpl(Context context, MainModelListener modelListener) {
+    public MainModelCmpl(Context context, OnModelCmplListener modelListener) {
         this.context = context;
         this.modelListener = modelListener;
     }

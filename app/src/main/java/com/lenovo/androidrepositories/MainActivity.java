@@ -9,10 +9,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.lenovo.androidrepositories.model.entity.MainBean;
-import com.lenovo.androidrepositories.model.model.MainModeImp;
-import com.lenovo.androidrepositories.model.model.MainModelCmpl;
-import com.lenovo.androidrepositories.model.model.MainModelListener;
+import com.lenovo.androidrepositories.model.impl.MainModeImp;
+import com.lenovo.androidrepositories.model.cmpl.MainModelCmpl;
+import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
+import com.lenovo.androidrepositories.util.ActivtiyUtil;
+import com.lenovo.androidrepositories.util.ToastUtil;
 import com.lenovo.androidrepositories.view.activity.AppTestActivity;
+import com.lenovo.androidrepositories.view.adapter.AbsRecycleAdapter;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
 import com.lenovo.androidrepositories.view.activity.DragLayoutTestActivity;
 import com.lenovo.androidrepositories.view.activity.DrawBoardTestActivity;
@@ -20,7 +23,7 @@ import com.lenovo.androidrepositories.view.activity.GifViewTestActivity;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainModelListener {
+public class MainActivity extends AppCompatActivity implements OnModelCmplListener<MainBean> {
     MainAdapter mainAdapter;
     private MainModeImp mainModeImp;
 
@@ -41,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements MainModelListener
         mainAdapter = new MainAdapter(this);
         recyclerView.setAdapter(mainAdapter);
         mainAdapter.setOnItemClickListener(itemClickListener);
-
     }
 
     /**
@@ -55,10 +57,9 @@ public class MainActivity extends AppCompatActivity implements MainModelListener
     /**
      * recycleView   点击事件回调
      */
-    private MainAdapter.OnRecyclerViewItemClickListener itemClickListener = new MainAdapter.OnRecyclerViewItemClickListener() {
+    private MainAdapter.OnRecyclerViewItemClickListener itemClickListener = new AbsRecycleAdapter.OnRecyclerViewItemClickListener() {
         @Override
-        public void onItemClickListener(View itemView, MainBean mainBean, int position) {
-            ToastUtil.showMessage(mainBean.getTitle());
+        public void onItemClickListener(View itemView, int position) {
             switch (position) {
                 case 0:
                     ActivtiyUtil.switchActivity(MainActivity.this, GifViewTestActivity.class);
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainModelListener
     };
 
     @Override
-    public void onSucessful(List<MainBean> list) {
+    public void onSucessful(List <MainBean>list) {
         mainAdapter.setData(list);
     }
 

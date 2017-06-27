@@ -8,11 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.lenovo.androidrepositories.R;
-import com.lenovo.androidrepositories.ToastUtil;
-import com.lenovo.androidrepositories.model.entity.MainBean;
-import com.lenovo.androidrepositories.model.model.MainModeImp;
-import com.lenovo.androidrepositories.model.model.MainModelCmpl;
-import com.lenovo.androidrepositories.model.model.MainModelListener;
+import com.lenovo.androidrepositories.model.cmpl.MainModelCmpl;
+import com.lenovo.androidrepositories.model.impl.MainModeImp;
+import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
+import com.lenovo.androidrepositories.util.ToastUtil;
+import com.lenovo.androidrepositories.view.adapter.AbsRecycleAdapter;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
 
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
  * Created by jyjs on 2017/6/26.
  */
 
-public class DragLayoutTestActivity extends AppCompatActivity implements MainAdapter.OnRecyclerViewItemClickListener, MainModelListener {
+public class DragLayoutTestActivity extends AppCompatActivity implements AbsRecycleAdapter.OnRecyclerViewItemClickListener, OnModelCmplListener {
 
     private MainAdapter mainAdapter, leftAdapter;
     private MainModeImp mainModelCmpl;
@@ -56,12 +56,12 @@ public class DragLayoutTestActivity extends AppCompatActivity implements MainAda
     }
 
     @Override
-    public void onItemClickListener(View itemView, MainBean mainBean, int position) {
-        ToastUtil.showMessage(mainBean.getTitle());
+    public void onItemClickListener(View itemView, int position) {
+        ToastUtil.showMessage(leftAdapter.getList().get(position).getTitle());
     }
 
     @Override
-    public void onSucessful(List<MainBean> list) {
+    public void onSucessful(List list) {
         mainAdapter.setData(list);
         leftAdapter.setData(list);
     }

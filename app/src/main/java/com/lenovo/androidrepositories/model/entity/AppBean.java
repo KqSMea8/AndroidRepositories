@@ -9,7 +9,8 @@ import android.graphics.drawable.Drawable;
 
 public class AppBean {
     private String title;
-    private Drawable drawable;
+    private BitmapDrawable drawable;
+    private String packageName;
 
     public String getTitle() {
         return title;
@@ -25,5 +26,13 @@ public class AppBean {
 
     public void setDrawable(BitmapDrawable drawable) {
         this.drawable = drawable;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 }

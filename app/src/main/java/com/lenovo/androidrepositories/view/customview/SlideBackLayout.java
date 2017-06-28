@@ -63,8 +63,7 @@ public class SlideBackLayout extends FrameLayout {
 
 
     public SlideBackLayout(Context context) {
-        super(context);
-        init(context);
+        this(context, null);
     }
 
 
@@ -169,7 +168,6 @@ public class SlideBackLayout extends FrameLayout {
             //触发边缘时，主动捕捉mRootView
             mViewDragHelper.captureChildView(mRootView, pointerId);
         }
-
 
 
     }

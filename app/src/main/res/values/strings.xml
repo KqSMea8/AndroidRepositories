@@ -9,6 +9,7 @@
         <item>应用</item>
         <item>文件</item>
         <item>Zip</item>
+        <item>右滑关闭</item>
 
     </string-array>
 </resources>

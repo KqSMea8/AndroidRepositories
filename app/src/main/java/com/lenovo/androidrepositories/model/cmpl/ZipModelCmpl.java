@@ -51,7 +51,7 @@ public class ZipModelCmpl implements ZipModelImpl {
         ThreadUtil.run(new Runnable() {
             @Override
             public void run() {
-                ZipUtil.zip(zipPath, unPath);
+                ZipUtil.unZip(zipPath, unPath);
                 final List<MainBean> beanList = show(unPath);
                 handler.post(new Runnable() {
                     @Override

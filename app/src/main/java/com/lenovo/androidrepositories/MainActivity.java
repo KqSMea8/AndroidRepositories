@@ -16,6 +16,7 @@ import com.lenovo.androidrepositories.util.ActivtiyUtil;
 import com.lenovo.androidrepositories.util.ToastUtil;
 import com.lenovo.androidrepositories.view.activity.AppTestActivity;
 import com.lenovo.androidrepositories.view.activity.FolderTestActivity;
+import com.lenovo.androidrepositories.view.activity.SlideBackTestActivity;
 import com.lenovo.androidrepositories.view.activity.ZipTestActivity;
 import com.lenovo.androidrepositories.view.adapter.AbsRecycleAdapter;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
@@ -81,12 +82,15 @@ public class MainActivity extends AppCompatActivity implements OnModelCmplListen
                 case 5:
                     ActivtiyUtil.switchActivity(MainActivity.this, ZipTestActivity.class);
                     break;
+                case 6:
+                    ActivtiyUtil.switchActivity(MainActivity.this, SlideBackTestActivity.class);
+                    break;
             }
         }
     };
 
     @Override
-    public void onSucessful(List <MainBean>list) {
+    public void onSucessful(List<MainBean> list) {
         mainAdapter.setData(list);
     }
 

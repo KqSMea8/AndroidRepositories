@@ -12,6 +12,7 @@ import android.view.View;
 import com.lenovo.androidrepositories.R;
 import com.lenovo.androidrepositories.model.cmpl.ZipModelCmpl;
 import com.lenovo.androidrepositories.model.entity.MainBean;
+import com.lenovo.androidrepositories.model.impl.ZipModelImpl;
 import com.lenovo.androidrepositories.model.listener.OnZipListener;
 import com.lenovo.androidrepositories.util.ToastUtil;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
@@ -26,12 +27,12 @@ import java.util.List;
 public class ZipTestActivity extends AppCompatActivity implements View.OnClickListener, OnZipListener {
 
     private MainAdapter mainAdapter;
-    private ZipModelCmpl zipModelCmpl;
+    private ZipModelImpl zipModelCmpl;
     private Toolbar toolBar;
     private FloatingActionButton fabZip, fabUnzip;
     private String srcPath = Environment.getExternalStorageDirectory().getPath() + "/Image/";
     private String zipPath = Environment.getExternalStorageDirectory().getPath() + "/img/image.zip";
-    private String unzipPath = Environment.getExternalStorageDirectory().getPath()+"/unzip/";
+    private String unzipPath = Environment.getExternalStorageDirectory().getPath() + "/unzip/";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class ZipTestActivity extends AppCompatActivity implements View.OnClickLi
 
     private void loadData() {
         zipModelCmpl = new ZipModelCmpl(this);
+        toolBar.setTitle(srcPath);
     }
 
     @Override

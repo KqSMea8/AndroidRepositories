@@ -81,6 +81,7 @@ public abstract class AbsRecycleAdapter<T> extends RecyclerView.Adapter<AbsRecyc
 
         public ViewHolder(View itemView) {
             super(itemView);
+
         }
 
 
@@ -94,8 +95,8 @@ public abstract class AbsRecycleAdapter<T> extends RecyclerView.Adapter<AbsRecyc
             }
         }
 
-    }
 
+    }
 
     public void setOnItemClickListener(AbsRecycleAdapter.OnRecyclerViewItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;

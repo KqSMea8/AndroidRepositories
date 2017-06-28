@@ -53,6 +53,9 @@
             android:name=".view.activity.SlideBackTestActivity"
             android:label="SlideBackLayout"
             android:theme="@style/transparent_theme"></activity>
+        <activity
+            android:name=".view.activity.DirectionalViewPagerTestActivity"
+            android:label="垂直ViewPager"></activity>
     </application>
 
 </manifest>

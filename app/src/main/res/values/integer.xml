@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="img_array">
+        <item>@mipmap/s</item>
+        <item>@mipmap/s</item>
+        <item>@mipmap/s</item>
+        <item>@mipmap/s</item>
+        <item>@mipmap/s</item>
+        <item>@mipmap/s</item>
+    </integer-array>
+
+
+</resources>

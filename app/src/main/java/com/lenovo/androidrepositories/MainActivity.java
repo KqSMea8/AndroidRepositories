@@ -15,6 +15,7 @@ import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
 import com.lenovo.androidrepositories.util.ActivtiyUtil;
 import com.lenovo.androidrepositories.util.ToastUtil;
 import com.lenovo.androidrepositories.view.activity.AppTestActivity;
+import com.lenovo.androidrepositories.view.activity.DirectionalViewPagerTestActivity;
 import com.lenovo.androidrepositories.view.activity.FolderTestActivity;
 import com.lenovo.androidrepositories.view.activity.SlideBackTestActivity;
 import com.lenovo.androidrepositories.view.activity.ZipTestActivity;
@@ -84,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements OnModelCmplListen
                     break;
                 case 6:
                     ActivtiyUtil.switchActivity(MainActivity.this, SlideBackTestActivity.class);
+                    break;
+                case 7:
+                    ActivtiyUtil.switchActivity(MainActivity.this, DirectionalViewPagerTestActivity.class);
                     break;
             }
         }

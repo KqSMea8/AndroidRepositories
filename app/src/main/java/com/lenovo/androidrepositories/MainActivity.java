@@ -1,6 +1,8 @@
 package com.lenovo.androidrepositories;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,6 +50,10 @@ public class MainActivity extends AppCompatActivity implements OnModelCmplListen
         mainAdapter = new MainAdapter(this);
         recyclerView.setAdapter(mainAdapter);
         mainAdapter.setOnItemClickListener(itemClickListener);
+        CollapsingToolbarLayout toolbarLayouy = (CollapsingToolbarLayout) findViewById(R.id.ctb_tool);
+        toolbarLayouy.setCollapsedTitleTextColor(Color.WHITE);
+        toolbarLayouy.setExpandedTitleColor(Color.RED);
+
     }
 
     /**

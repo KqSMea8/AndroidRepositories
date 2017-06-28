@@ -44,17 +44,6 @@ public class EncodedUtil {
 		return str;
 	}
 
-	/**
-	 * 选出字符串中的数字
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public static String getInt(String str) {
-		Pattern p = Pattern.compile("[^0-9]");
-		Matcher m = p.matcher(str);
-		return m.replaceAll("");
-	}
 
 	/**
 	 * String 转 Base64编码

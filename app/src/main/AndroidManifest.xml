@@ -56,6 +56,9 @@
         <activity
             android:name=".view.activity.DirectionalViewPagerTestActivity"
             android:label="垂直ViewPager"></activity>
+        <activity
+            android:name=".view.activity.CustomViewPagerTestActivity"
+            android:label="自定义ViewPager"></activity>
     </application>
 
 </manifest>

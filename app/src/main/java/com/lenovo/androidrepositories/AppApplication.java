@@ -15,11 +15,11 @@ public class AppApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
-
     }
 
     public static AppApplication getInstance() {
         return (AppApplication) context;
     }
+
 
 }

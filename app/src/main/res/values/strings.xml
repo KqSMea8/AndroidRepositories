@@ -11,6 +11,7 @@
         <item>Zip</item>
         <item>右滑关闭</item>
         <item>垂直ViewPager</item>
+        <item>自定义ViewPager</item>
 
     </string-array>
 </resources>

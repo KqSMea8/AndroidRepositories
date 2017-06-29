@@ -53,9 +53,11 @@ public class CustomViewPager extends ViewGroup {
      */
     private int rightBorder;
 
-    private int index = 0;
+    private int curPosition = 0;
 
     private int childWith;
+
+    private int minVelocity, maxVelocity;
 
     public CustomViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -64,6 +66,8 @@ public class CustomViewPager extends ViewGroup {
 
         // 获取TouchSlop值
         mTouchSlop = ViewConfiguration.get(context).getScaledPagingTouchSlop();
+        minVelocity = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
+        maxVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
 
     }
 
@@ -155,19 +159,33 @@ public class CustomViewPager extends ViewGroup {
             case MotionEvent.ACTION_UP:
                 // 当手指抬起时，根据当前的滚动值来判定应该滚动到哪个子控件的界面
                 int targetIndex = (getScrollX() + getWidth() / 2) / getWidth();
-                int dx = targetIndex * getWidth() - getScrollX();
-                if (Math.abs(v) > 1000 && targetIndex < getChildCount() - 2) {
-                    mScroller.fling(getScrollX(), 0, v, 0, targetIndex * childWith, (targetIndex + 1) * childWith, 0, 0);
-                } else {
-                    // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
-                    mScroller.startScroll(getScrollX(), 0, dx, 0);
+                if (v > 200) {
+                    targetIndex = getScrollX() / getWidth() + 1;
+                    if (targetIndex > getChildCount() - 1) {
+                        targetIndex = getChildCount() - 1;
+                    }
+                } else if (v < -200) {
+                    targetIndex = getScrollX() / getWidth();
                 }
-                invalidate();
+                smoothScrollToItem(targetIndex);
                 break;
         }
         return super.onTouchEvent(event);
-
     }
+
+    /**
+     * 滚动到指定位置
+     *
+     * @param targetIndex
+     */
+    private void smoothScrollToItem(int targetIndex) {
+        curPosition = targetIndex;
+        int dx = targetIndex * getWidth() - getScrollX();
+        // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
+        mScroller.startScroll(getScrollX(), 0, dx, 0);
+        invalidate();
+    }
+
 
     @Override
     public void computeScroll() {

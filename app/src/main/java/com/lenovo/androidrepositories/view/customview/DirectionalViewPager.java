@@ -122,8 +122,7 @@ public class DirectionalViewPager extends ViewPager {
         mScroller = new Scroller(getContext());
         final ViewConfiguration configuration = ViewConfiguration
                 .get(getContext());
-        mTouchSlop = ViewConfigurationCompat
-                .getScaledPagingTouchSlop(configuration);
+        mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
     }
@@ -721,7 +720,7 @@ public class DirectionalViewPager extends ViewPager {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         /*
-		 * This method JUST determines whether we want to intercept the motion.
+         * This method JUST determines whether we want to intercept the motion.
 		 * If we return true, onMotionEvent will be called and we do the actual
 		 * scrolling there.
 		 */

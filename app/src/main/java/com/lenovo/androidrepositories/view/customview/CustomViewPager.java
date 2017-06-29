@@ -156,7 +156,6 @@ public class CustomViewPager extends ViewGroup {
                 // 当手指抬起时，根据当前的滚动值来判定应该滚动到哪个子控件的界面
                 int targetIndex = (getScrollX() + getWidth() / 2) / getWidth();
                 int dx = targetIndex * getWidth() - getScrollX();
-                Log.e("print", v + "--" + targetIndex + "--" + dx);
                 if (Math.abs(v) > 1000 && targetIndex < getChildCount() - 2) {
                     mScroller.fling(getScrollX(), 0, v, 0, targetIndex * childWith, (targetIndex + 1) * childWith, 0, 0);
                 } else {

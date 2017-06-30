@@ -5,12 +5,61 @@
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
-    <TextView
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
         android:gravity="center"
+        android:onClick="onClick"
         android:text="右滑关闭activity"
         android:textColor="@color/colorAccent"
         android:textSize="20sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="右滑关闭activity"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="右滑关闭activity"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="右滑关闭activity"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="右滑关闭activity"
+        android:textColor="@color/colorAccent"
+
+        android:textSize="20sp" />
+
 
 </LinearLayout>

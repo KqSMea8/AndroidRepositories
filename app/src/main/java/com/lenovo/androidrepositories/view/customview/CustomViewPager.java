@@ -66,8 +66,6 @@ public class CustomViewPager extends ViewGroup {
 
         // 获取TouchSlop值
         mTouchSlop = ViewConfiguration.get(context).getScaledPagingTouchSlop();
-        minVelocity = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
-        maxVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
 
     }
 
@@ -76,6 +74,7 @@ public class CustomViewPager extends ViewGroup {
         public float getInterpolation(float t) {
             t -= 1.0f;
             return t * t * t * t * t + 1.0f;
+
         }
     };
 
@@ -126,7 +125,6 @@ public class CustomViewPager extends ViewGroup {
     }
 
     long startTime;
-    int v = 0;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -138,13 +136,13 @@ public class CustomViewPager extends ViewGroup {
                 if (startTime == 0) {
                     startTime = SystemClock.uptimeMillis();
                 }
-                v = 0;
+                maxVelocity = 0;
                 return true;
             case MotionEvent.ACTION_MOVE:
                 mXMove = event.getX();
                 int scrolledX = (int) (mXLastMove - mXMove);
                 long nowTime = SystemClock.uptimeMillis();
-                v = (int) (scrolledX * 1000 / ((nowTime - startTime) == 0 ? 1 : (nowTime - startTime)));
+                maxVelocity = (int) (scrolledX * 1000 / ((nowTime - startTime) == 0 ? 1 : (nowTime - startTime)));
                 startTime = nowTime;
                 if (getScrollX() + scrolledX < leftBorder) {
                     scrollTo(leftBorder, 0);
@@ -159,12 +157,12 @@ public class CustomViewPager extends ViewGroup {
             case MotionEvent.ACTION_UP:
                 // 当手指抬起时，根据当前的滚动值来判定应该滚动到哪个子控件的界面
                 int targetIndex = (getScrollX() + getWidth() / 2) / getWidth();
-                if (v > 200) {
+                if (maxVelocity > 200) {
                     targetIndex = getScrollX() / getWidth() + 1;
                     if (targetIndex > getChildCount() - 1) {
                         targetIndex = getChildCount() - 1;
                     }
-                } else if (v < -200) {
+                } else if (maxVelocity < -200) {
                     targetIndex = getScrollX() / getWidth();
                 }
                 smoothScrollToItem(targetIndex);

@@ -38,7 +38,7 @@ public class AppTestActivity extends AppCompatActivity implements AbsRecycleAdap
 
     private void initView() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_list);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         appAdapter = new AppAdapter(this);
         recyclerView.setAdapter(appAdapter);
         appAdapter.setOnItemClickListener(this);

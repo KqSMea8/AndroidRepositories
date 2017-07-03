@@ -2,11 +2,14 @@ package com.lenovo.androidrepositories;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.os.EnvironmentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,6 +18,8 @@ import com.lenovo.androidrepositories.model.impl.MainModeImp;
 import com.lenovo.androidrepositories.model.cmpl.MainModelCmpl;
 import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
 import com.lenovo.androidrepositories.util.ActivtiyUtil;
+import com.lenovo.androidrepositories.util.DiskLruCache;
+import com.lenovo.androidrepositories.util.EncodedUtil;
 import com.lenovo.androidrepositories.util.ToastUtil;
 import com.lenovo.androidrepositories.view.activity.AppTestActivity;
 import com.lenovo.androidrepositories.view.activity.CustomViewPagerTestActivity;
@@ -28,6 +33,9 @@ import com.lenovo.androidrepositories.view.activity.DragLayoutTestActivity;
 import com.lenovo.androidrepositories.view.activity.DrawBoardTestActivity;
 import com.lenovo.androidrepositories.view.activity.GifViewTestActivity;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnModelCmplListener<MainBean> {
@@ -63,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements OnModelCmplListen
     private void loadData() {
         mainModeImp = new MainModelCmpl(this, this);
         mainModeImp.getData(R.array.main_title);
+
     }
 
     /**

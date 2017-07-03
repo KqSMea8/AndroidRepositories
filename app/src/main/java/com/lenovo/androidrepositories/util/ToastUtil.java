@@ -11,7 +11,7 @@ import com.lenovo.androidrepositories.AppApplication;
 public class ToastUtil {
 
     public static void showMessage(String message) {
-        Toast.makeText(AppApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(AppApplication.getInstance(), message + "", Toast.LENGTH_SHORT).show();
     }
 
 

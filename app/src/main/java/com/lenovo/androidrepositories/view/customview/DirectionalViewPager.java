@@ -108,12 +108,9 @@ public class DirectionalViewPager extends ViewPager {
     public DirectionalViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         initViewPager();
-
-        // We default to horizontal, only change if a value is explicitly
-        // specified
-        int orientation = attrs.getAttributeIntValue(XML_NS, "orientation", -1);
-        if (orientation != -1) {
-            setOrientation(orientation);
+        mOrientation = attrs.getAttributeIntValue(XML_NS, "orientation", -1);
+        if (mOrientation != -1) {
+            setOrientation(mOrientation);
         }
     }
 
@@ -756,7 +753,7 @@ public class DirectionalViewPager extends ViewPager {
 
         switch (action) {
             case MotionEvent.ACTION_MOVE: {
-			/*
+            /*
 			 * mIsBeingDragged == false, otherwise the shortcut would have
 			 * caught it. Check whether the user has moved far enough from his
 			 * original down touch.

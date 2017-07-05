@@ -22,10 +22,12 @@ import com.lenovo.androidrepositories.util.DiskLruCache;
 import com.lenovo.androidrepositories.util.EncodedUtil;
 import com.lenovo.androidrepositories.util.ToastUtil;
 import com.lenovo.androidrepositories.view.activity.AppTestActivity;
+import com.lenovo.androidrepositories.view.activity.CustomAnimatorActivity;
 import com.lenovo.androidrepositories.view.activity.CustomViewPagerTestActivity;
 import com.lenovo.androidrepositories.view.activity.DirectionalViewPagerTestActivity;
 import com.lenovo.androidrepositories.view.activity.FolderTestActivity;
 import com.lenovo.androidrepositories.view.activity.SlideBackTestActivity;
+import com.lenovo.androidrepositories.view.activity.ThreadTestActivity;
 import com.lenovo.androidrepositories.view.activity.ZipTestActivity;
 import com.lenovo.androidrepositories.view.adapter.AbsRecycleAdapter;
 import com.lenovo.androidrepositories.view.adapter.MainAdapter;
@@ -107,6 +109,12 @@ public class MainActivity extends AppCompatActivity implements OnModelCmplListen
                     break;
                 case 8:
                     ActivtiyUtil.switchActivity(MainActivity.this, CustomViewPagerTestActivity.class);
+                    break;
+                case 9:
+                    ActivtiyUtil.switchActivity(MainActivity.this, CustomAnimatorActivity.class);
+                    break;
+                case 10:
+                    ActivtiyUtil.switchActivity(MainActivity.this, ThreadTestActivity.class);
                     break;
             }
         }

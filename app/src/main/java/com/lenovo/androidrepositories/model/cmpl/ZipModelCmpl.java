@@ -5,6 +5,7 @@ import android.os.Handler;
 import com.lenovo.androidrepositories.model.entity.MainBean;
 import com.lenovo.androidrepositories.model.impl.ZipModelImpl;
 import com.lenovo.androidrepositories.model.listener.OnZipListener;
+import com.lenovo.androidrepositories.asytask.AbsRunnable;
 import com.lenovo.androidrepositories.util.ThreadUtil;
 import com.lenovo.androidrepositories.util.ZipUtil;
 
@@ -26,9 +27,9 @@ public class ZipModelCmpl implements ZipModelImpl {
 
     @Override
     public void zip(final String srcPath, final String zipPath) {
-        ThreadUtil.run(new Runnable() {
+        ThreadUtil.execute(new AbsRunnable("MainModelCmpl-zip") {
             @Override
-            public void run() {
+            public void execute() {
                 ZipUtil.zip(srcPath, zipPath);
                 final List<MainBean> beanList = show(zipPath);
                 handler.post(new Runnable() {
@@ -48,9 +49,9 @@ public class ZipModelCmpl implements ZipModelImpl {
     @Override
     public void unZip(final String zipPath, final String unPath) {
 
-        ThreadUtil.run(new Runnable() {
+        ThreadUtil.execute(new AbsRunnable("MainModelCmpl-unZip"){
             @Override
-            public void run() {
+            public void execute() {
                 ZipUtil.unZip(zipPath, unPath);
                 final List<MainBean> beanList = show(unPath);
                 handler.post(new Runnable() {

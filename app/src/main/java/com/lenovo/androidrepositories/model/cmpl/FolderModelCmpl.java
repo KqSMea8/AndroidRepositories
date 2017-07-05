@@ -7,6 +7,7 @@ import com.lenovo.androidrepositories.model.entity.MainBean;
 import com.lenovo.androidrepositories.model.impl.FolderModelImpl;
 import com.lenovo.androidrepositories.model.listener.OnFolderListener;
 import com.lenovo.androidrepositories.util.FolderUtil;
+import com.lenovo.androidrepositories.asytask.AbsRunnable;
 import com.lenovo.androidrepositories.util.ThreadUtil;
 
 import java.io.File;
@@ -29,9 +30,9 @@ public class FolderModelCmpl implements FolderModelImpl {
 
     @Override
     public void copy(final String srcPath, final String desPath) {
-        ThreadUtil.run(new Runnable() {
+        ThreadUtil.execute(new AbsRunnable("FolderModelCmpl-copy") {
             @Override
-            public void run() {
+            public void execute() {
                 try {
                     FolderUtil.copyFolder(new File(srcPath), new File(desPath));
                     handler.post(new Runnable() {
@@ -62,9 +63,9 @@ public class FolderModelCmpl implements FolderModelImpl {
 
     @Override
     public void delete(final String desPath) {
-        ThreadUtil.run(new Runnable() {
+        ThreadUtil.execute(new AbsRunnable("FolderModelCmpl-delete") {
             @Override
-            public void run() {
+            public void execute() {
                 try {
                     FolderUtil.deleteFolder(new File(desPath));
                     handler.post(new Runnable() {
@@ -92,9 +93,9 @@ public class FolderModelCmpl implements FolderModelImpl {
 
     @Override
     public void show(final String desPath) {
-        ThreadUtil.run(new Runnable() {
+        ThreadUtil.execute(new AbsRunnable("FolderModelCmpl-show") {
             @Override
-            public void run() {
+            public void execute() {
                 final List<MainBean> list = new ArrayList<MainBean>();
                 try {
                     File file = new File(desPath);

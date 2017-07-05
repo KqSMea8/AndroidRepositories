@@ -10,6 +10,7 @@ import android.os.Handler;
 import com.lenovo.androidrepositories.model.entity.AppBean;
 import com.lenovo.androidrepositories.model.impl.AppModelImp;
 import com.lenovo.androidrepositories.model.listener.OnModelCmplListener;
+import com.lenovo.androidrepositories.asytask.AbsRunnable;
 import com.lenovo.androidrepositories.util.ThreadUtil;
 
 import java.util.ArrayList;
@@ -36,9 +37,9 @@ public class AppModelCmpl implements AppModelImp {
     public void getAppList() {
         final PackageManager packageManager = context.getPackageManager();
         packageName = context.getPackageName();
-        ThreadUtil.run(new Runnable() {
+        ThreadUtil.execute(new AbsRunnable("AppModelCmpl") {
             @Override
-            public void run() {
+            public void execute() {
                 final List<AppBean> list = new ArrayList<AppBean>();
                 Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
                 mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);

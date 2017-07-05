@@ -12,6 +12,8 @@
         <item>右滑关闭</item>
         <item>垂直ViewPager</item>
         <item>自定义ViewPager</item>
+        <item>自定义动画</item>
+        <item>多线程</item>
 
     </string-array>
 </resources>

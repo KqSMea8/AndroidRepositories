@@ -59,6 +59,12 @@
         <activity
             android:name=".view.activity.CustomViewPagerTestActivity"
             android:label="自定义ViewPager"></activity>
+        <activity
+            android:name=".view.activity.CustomAnimatorActivity"
+            android:label="自定义动画"></activity>
+        <activity
+            android:name=".view.activity.ThreadTestActivity"
+            android:label="多线程练习"></activity>
     </application>
 
 </manifest>

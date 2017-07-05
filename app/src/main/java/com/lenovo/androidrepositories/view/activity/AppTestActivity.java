@@ -51,7 +51,8 @@ public class AppTestActivity extends AppCompatActivity implements AbsRecycleAdap
 
     @Override
     public void onItemClickListener(View itemView, int position) {
-
+        AppBean appBean = appAdapter.getList().get(position);
+        PackageUtil.startApp(appBean.getPackageName());
     }
 
 

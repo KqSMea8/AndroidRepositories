@@ -1,6 +1,5 @@
 package com.lenovo.androidrepositories.util;
 
-import android.os.Handler;
 import android.util.Log;
 
 import com.lenovo.androidrepositories.asytask.AbsRunnable;
@@ -25,11 +24,12 @@ public class ThreadUtil {
 
 
     public static void execute(final AbsRunnable runnable) {
-        stop(runnable.getTag());
-        Log.e("print", "execute: " + runnable.getTag());
-        runnable.setOnTaskComplete(onTaskComplete);
-        Future<?> future = threadPoolExecutor.submit(runnable);
-        futures.put(runnable.getTag(), future);
+        boolean flag = stop(runnable.getTag());
+        if (!flag) {
+            runnable.setOnTaskComplete(onTaskComplete);
+            Future<?> future = threadPoolExecutor.submit(runnable);
+            futures.put(runnable.getTag(), future);
+        }
     }
 
     /**
@@ -37,16 +37,17 @@ public class ThreadUtil {
      *
      * @param tag 任务tag
      */
-    public static void stop(String tag) {
+    public static boolean stop(String tag) {
         if (futures.containsKey(tag)) {
             Future future = futures.get(tag);
-
             if (future != null && (!future.isCancelled() || !future.isDone())) {
                 future.cancel(true);
+                return true;
             }
-            futures.remove(tag);
         }
+        return false;
     }
+
 
     /**
      * 结束所有任务
@@ -65,14 +66,15 @@ public class ThreadUtil {
         } else {
             return false;
         }
-
     }
 
     private static AbsRunnable.OnTaskComplete onTaskComplete = new AbsRunnable.OnTaskComplete() {
         @Override
         public void onTaskComplete(AbsRunnable runnable) {
-            stop(runnable.getTag());
-            Log.e("print", "onTaskComplete: " + runnable.getTag());
+            Log.e("print", "onTaskComplete: ");
+            futures.remove(runnable.getTag());
+
+
         }
     };
 

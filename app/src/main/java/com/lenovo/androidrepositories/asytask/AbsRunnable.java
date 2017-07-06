@@ -32,9 +32,14 @@ public abstract class AbsRunnable implements Runnable {
     public abstract void execute();
 
 
+    protected void stop() {
+
+    }
+
     public void setOnTaskComplete(OnTaskComplete onTaskComplete) {
         this.onTaskComplete = onTaskComplete;
     }
+
 
     public interface OnTaskComplete {
         void onTaskComplete(AbsRunnable runnable);

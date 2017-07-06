@@ -18,6 +18,7 @@ public class DirectionViewpagerNodelCmpl implements DirectionViewpagerModelImpl 
     private Context context;
     private OnModelCmplListener cmplListener;
 
+
     public DirectionViewpagerNodelCmpl(Context context, OnModelCmplListener<Integer> cmplListener) {
         this.context = context;
         this.cmplListener = cmplListener;

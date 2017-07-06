@@ -19,7 +19,7 @@ public class MainModelCmpl  implements MainModeImp {
     private Context context;
     private OnModelCmplListener<MainBean> modelListener;
 
-    public MainModelCmpl(Context context, OnModelCmplListener modelListener) {
+    public MainModelCmpl(Context context, OnModelCmplListener<MainBean> modelListener) {
         this.context = context;
         this.modelListener = modelListener;
     }

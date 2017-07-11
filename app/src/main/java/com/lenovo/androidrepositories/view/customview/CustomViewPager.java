@@ -1,16 +1,17 @@
 package com.lenovo.androidrepositories.view.customview;
 
 import android.content.Context;
-import android.os.SystemClock;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jyjs on 2017/6/29.
@@ -57,7 +58,8 @@ public class CustomViewPager extends ViewGroup {
 
     private int childWith;
 
-    private int minVelocity, maxVelocity;
+
+    private VelocityTracker velocityTracker;
 
     public CustomViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -66,6 +68,7 @@ public class CustomViewPager extends ViewGroup {
 
         // 获取TouchSlop值
         mTouchSlop = ViewConfiguration.get(context).getScaledPagingTouchSlop();
+        velocityTracker = VelocityTracker.obtain();
 
     }
 
@@ -106,6 +109,7 @@ public class CustomViewPager extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        velocityTracker.addMovement(ev);
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mXDown = ev.getX();
@@ -119,31 +123,27 @@ public class CustomViewPager extends ViewGroup {
                 if (diff > mTouchSlop) {
                     return true;
                 }
+
                 break;
+
+
         }
         return super.onInterceptTouchEvent(ev);
     }
 
-    long startTime;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
+        velocityTracker.addMovement(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mXDown = event.getX();
                 mXLastMove = mXDown;
-                if (startTime == 0) {
-                    startTime = SystemClock.uptimeMillis();
-                }
-                maxVelocity = 0;
                 return true;
             case MotionEvent.ACTION_MOVE:
                 mXMove = event.getX();
                 int scrolledX = (int) (mXLastMove - mXMove);
-                long nowTime = SystemClock.uptimeMillis();
-                maxVelocity = (int) (scrolledX * 1000 / ((nowTime - startTime) == 0 ? 1 : (nowTime - startTime)));
-                startTime = nowTime;
+                mXLastMove = mXMove;
                 if (getScrollX() + scrolledX < leftBorder) {
                     scrollTo(leftBorder, 0);
                     return true;
@@ -152,17 +152,18 @@ public class CustomViewPager extends ViewGroup {
                     return true;
                 }
                 scrollBy(scrolledX, 0);
-                mXLastMove = mXMove;
                 return true;
             case MotionEvent.ACTION_UP:
+                velocityTracker.computeCurrentVelocity(1000);
                 // 当手指抬起时，根据当前的滚动值来判定应该滚动到哪个子控件的界面
                 int targetIndex = (getScrollX() + getWidth() / 2) / getWidth();
-                if (maxVelocity > 200) {
+                Log.e("print", "onTouchEvent: " + velocityTracker.getXVelocity());
+                if (velocityTracker.getXVelocity() < -200) {
                     targetIndex = getScrollX() / getWidth() + 1;
                     if (targetIndex > getChildCount() - 1) {
                         targetIndex = getChildCount() - 1;
                     }
-                } else if (maxVelocity < -200) {
+                } else if (velocityTracker.getXVelocity() > 200) {
                     targetIndex = getScrollX() / getWidth();
                 }
                 smoothScrollToItem(targetIndex);

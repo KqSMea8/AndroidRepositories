@@ -38,9 +38,11 @@ public class ThreadTestActivity extends AppCompatActivity {
                     @Override
                     public void execute() {
                         try {
-                            while (true) {
+                            int i = 0;
+                            while (i < 10) {
                                 Log.e("print", "execute: " + Thread.currentThread().toString());
                                 Thread.sleep(200);
+                                i++;
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();

@@ -24,8 +24,7 @@ public class ThreadUtil {
 
 
     public static void execute(final AbsRunnable runnable) {
-        boolean flag = stop(runnable.getTag());
-        if (!flag) {
+        if (!futures.containsKey(runnable.getTag())) {
             runnable.setOnTaskComplete(onTaskComplete);
             Future<?> future = threadPoolExecutor.submit(runnable);
             futures.put(runnable.getTag(), future);
@@ -60,8 +59,10 @@ public class ThreadUtil {
     }
 
     public boolean isRunning(String tag) {
+
         if (futures.containsKey(tag)) {
             Future future = futures.get(tag);
+
             return future.isCancelled() && future.isDone();
         } else {
             return false;
@@ -71,10 +72,10 @@ public class ThreadUtil {
     private static AbsRunnable.OnTaskComplete onTaskComplete = new AbsRunnable.OnTaskComplete() {
         @Override
         public void onTaskComplete(AbsRunnable runnable) {
-            Log.e("print", "onTaskComplete: ");
+            Future future = futures.get(runnable.getTag());
+
+            Log.e("print", "onTaskComplete: " + future.isCancelled());
             futures.remove(runnable.getTag());
-
-
         }
     };
 

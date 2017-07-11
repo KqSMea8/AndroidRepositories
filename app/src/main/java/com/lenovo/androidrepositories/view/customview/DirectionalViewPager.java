@@ -1,7 +1,5 @@
 package com.lenovo.androidrepositories.view.customview;
 
-import java.util.ArrayList;
-
 import android.content.Context;
 import android.os.Build;
 import android.os.Parcel;
@@ -11,7 +9,6 @@ import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewConfigurationCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -21,6 +18,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
+
+import java.util.ArrayList;
 
 /**
  * Layout manager that allows the user to flip horizontally or vertically
@@ -37,8 +36,9 @@ import android.widget.Scroller;
 public class DirectionalViewPager extends ViewPager {
     private static final String TAG = "DirectionalViewPager";
     private static final String XML_NS = "http://schemas.android.com/apk/res/android";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final boolean USE_CACHE = false;
+
     /**
      * 水平滑动模式
      */
@@ -250,6 +250,7 @@ public class DirectionalViewPager extends ViewPager {
     }
 
     void addNewItem(int position, int index) {
+
         ItemInfo ii = new ItemInfo();
         ii.position = position;
         ii.object = mAdapter.instantiateItem(this, position);
@@ -280,7 +281,6 @@ public class DirectionalViewPager extends ViewPager {
                 i--;
                 mAdapter.destroyItem(this, ii.position, ii.object);
                 needPopulate = true;
-
                 if (mCurItem == ii.position) {
                     // Keep the current item in the valid range
                     newCurrItem = Math.max(0,
@@ -754,13 +754,13 @@ public class DirectionalViewPager extends ViewPager {
         switch (action) {
             case MotionEvent.ACTION_MOVE: {
             /*
-			 * mIsBeingDragged == false, otherwise the shortcut would have
+             * mIsBeingDragged == false, otherwise the shortcut would have
 			 * caught it. Check whether the user has moved far enough from his
 			 * original down touch.
 			 */
 
 			/*
-			 * Locally do absolute value. mLastMotionY is set to the y value of
+             * Locally do absolute value. mLastMotionY is set to the y value of
 			 * the down event.
 			 */
                 final int activePointerId = mActivePointerId;
@@ -818,8 +818,8 @@ public class DirectionalViewPager extends ViewPager {
             }
 
             case MotionEvent.ACTION_DOWN: {
-			/*
-			 * Remember location of down touch. ACTION_DOWN always refers to
+            /*
+             * Remember location of down touch. ACTION_DOWN always refers to
 			 * pointer index 0.
 			 */
                 if (mOrientation == HORIZONTAL) {
@@ -855,7 +855,7 @@ public class DirectionalViewPager extends ViewPager {
         }
 
 		/*
-		 * The only time we want to intercept motion events is if we are in the
+         * The only time we want to intercept motion events is if we are in the
 		 * drag mode.
 		 */
         return mIsBeingDragged;
@@ -885,8 +885,8 @@ public class DirectionalViewPager extends ViewPager {
 
         switch (action & MotionEventCompat.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN: {
-			/*
-			 * If being flinged and user touches, stop the fling. isFinished
+            /*
+             * If being flinged and user touches, stop the fling. isFinished
 			 * will be false if being flinged.
 			 */
                 completeScroll();
@@ -1096,7 +1096,7 @@ public class DirectionalViewPager extends ViewPager {
     }
 
     private class DataSetObserver extends
-            VerticalViewPagerCompat.DataSetObserver {
+            android.database.DataSetObserver {
 
         @Override
         public void onChanged() {
@@ -1105,6 +1105,7 @@ public class DirectionalViewPager extends ViewPager {
 
         @Override
         public void onInvalidated() {
+            dataSetChanged();
         }
     }
 
@@ -1113,13 +1114,10 @@ public class DirectionalViewPager extends ViewPager {
         }
 
         public static void setDataSetObserver(PagerAdapter adapter,
-                                              VerticalViewPagerCompat.DataSetObserver observer) {
+                                              android.database.DataSetObserver observer) {
             adapter.registerDataSetObserver(observer);
         }
 
-        public static class DataSetObserver extends
-                android.database.DataSetObserver {
-        }
     }
 
 }

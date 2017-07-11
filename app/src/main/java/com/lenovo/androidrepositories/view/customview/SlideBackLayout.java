@@ -105,7 +105,7 @@ public class SlideBackLayout extends FrameLayout {
 
 
     @Override
-    public boolean onInterceptHoverEvent(MotionEvent event) {
+    public boolean onInterceptTouchEvent(MotionEvent event) {
         return mViewDragHelper.shouldInterceptTouchEvent(event);
     }
 
@@ -126,7 +126,7 @@ public class SlideBackLayout extends FrameLayout {
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             //当前回调，松开手时触发，比较触发条件和当前的滑动距离
             int left = releasedChild.getLeft();
-            if (left <= mSlideWidth) {
+            if (left <= mSlideWidth && xvel < 1000) {
                 //缓慢滑动的方法,小于触发条件，滚回去
                 mViewDragHelper.settleCapturedViewAt(0, 0);
             } else {

@@ -77,12 +77,12 @@ public class DrawBoardView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                point1.x = (int) event.getX();
-                point1.y = (int) event.getY();
+                point1.x = (int) event.getX(0);
+                point1.y = (int) event.getY(0);
                 return true;
             case MotionEvent.ACTION_MOVE:
-                point2.x = (int) event.getX();
-                point2.y = (int) event.getY();
+                point2.x = (int) event.getX(0);
+                point2.y = (int) event.getY(0);
                 Canvas canvas1 = new Canvas(bitmap);
                 canvas1.drawLine(point1.x, point1.y, point2.x, point2.y, paint);
                 canvas1.save();
